@@ -1,0 +1,60 @@
+# .gitignore file
+# 
+# Set up for Microchip/MPLAB X development
+# MASTER BRANCH VERSION
+#
+# Andreas Reiter
+# Updated Nov 23, 2019
+#
+# Branch 'master' is the base branch for releases. As users might need access
+# to working firmware without interest in the source code, releses should also 
+# contain production files allowing to program HEX files without having to re-compile 
+# the project. Therefore branch 'master' includes folder 'dist' while all other 
+# includes are identical.
+#
+
+# Object files
+*.o
+*.ko
+*.obj
+*.elf
+
+# Executables
+*.exe
+
+# Netbeans specific files to ignore
+#
+# Distribution folder is allowed on branch 'master'
+# nbproject/dist/      
+~*.*
+nbproject/build/
+nbproject/private/
+nbproject/disassembly/
+build/
+dist/
+private/
+disassembly/
+
+# MPLAB X specific files to ignore
+Makefile-genesis.properties
+nbproject/Makefile-*
+nbproject/Package-*
+nbproject/private/
+
+# MPLAB X Trace specific files to ignore
+*.log
+*.inx
+
+# KDE specific files toignore
+.directory
+# Misc
+*.svn
+*.bak
+*.zip
+*.mk
+*.bash
+
+# User specific directories and iles to ignore
+documentation
+
+
