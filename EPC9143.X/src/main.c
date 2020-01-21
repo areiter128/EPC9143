@@ -17,16 +17,15 @@ int main(void) {
 
     volatile uint16_t timeout = 0;
      
-    ConfigureOscillator();        // Set up system oscillator for 100 MIPS operation
-    init_aclk();        // Set up Auxiliary PLL for 500 MHz (source clock to PWM module)
-    init_timer1();      // Set up Timer1 as scheduler time base
-    init_gpio();        // Initialize common device GPIOs
+    Oscillator_Initialize(); // Set up system oscillator and auxiliary clock
+    SystemTimer_Initialize(); // Set up Timer1 as scheduler time base
+    ConfigureGPIOs();        // Initialize common device GPIOs
     
     // Basic setup of common power controller peripheral modules
-    init_pwm_module();  // Set up PWM module (basic module configuration)
-    init_adc_module();  // Set up Analog-To-Digital converter module
-    init_vin_adc();     // Initialize ADC Channel to measure input voltage
-    fault_check_init(); // Initialize fault monitor objects
+    ConfigurePWM();  // Set up PWM module (basic module configuration)
+    ConfigureADC();  // Set up Analog-To-Digital converter module
+//    init_vin_adc();     // Initialize ADC Channel to measure input voltage
+//    fault_check_init(); // Initialize fault monitor objects
     
     // Enable Timer1
     T1CONbits.TON = 1; 
@@ -41,7 +40,7 @@ int main(void) {
 
 		// Execute port controller
         PowerControl_Execute();
-        FaultCheck_Execute();
+//        FaultCheck_Execute();
 
 		
         Nop();

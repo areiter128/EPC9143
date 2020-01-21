@@ -283,7 +283,7 @@ extern "C" {
  *  
  * *************************************************************************************************/
 
-extern volatile POWER_CONTROLLER_t buck;
+extern volatile BUCK_POWER_CONTROLLER_t buck;
 
 
 /*!Global Functions
@@ -295,8 +295,8 @@ extern volatile POWER_CONTROLLER_t buck;
  * All functions which should be globally accessible should be listed here
  *  
  * *************************************************************************************************/
-extern volatile uint16_t ConfigureOscillator(void);
-extern volatile uint16_t ConfigureSystemTimer(void);
+extern volatile uint16_t Oscillator_Initialize(void);
+extern volatile uint16_t SystemTimer_Initialize(void);
 extern volatile uint16_t ConfigureGPIOs(void);
 extern volatile uint16_t ConfigureUART(void);
 extern volatile uint16_t ConfigureADC(void);

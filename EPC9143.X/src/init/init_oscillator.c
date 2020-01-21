@@ -8,7 +8,7 @@
 #include <stdint.h>          /* For uint16_t definition                       */
 #include <stdbool.h>         /* For true/false definition                     */
 
-#include "user.h"          /* variables/params used by system.c             */
+#include "globals.h"         
 
 /******************************************************************************/
 /* System Level Functions                                                     */
@@ -28,7 +28,7 @@ compiler installation directory /doc folder for documentation on the
 __builtin functions.*/
 
 /* TODO Add clock switching code if appropriate.  An example stub is below.   */
-volatile uint16_t ConfigureOscillator(void) {
+volatile uint16_t Oscillator_Initialize(void) {
     
     volatile uint16_t i=0, timeout=0;
 

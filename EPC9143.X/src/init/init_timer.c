@@ -9,7 +9,9 @@
 #include <xc.h>
 #include <stdint.h>
 
-/*!ConfigureSystemTimer()
+#include "globals.h"
+
+/*!SystemTimer_Initialize()
  * *********************************************************************************
  * Summary: Initialize standard 16-bit timer
  * 
@@ -21,7 +23,7 @@
  * 
  * ********************************************************************************/
 
-volatile uint16_t ConfigureSystemTimer(void) {
+volatile uint16_t SystemTimer_Initialize(void) {
     
     T1CONbits.TON = 0; // Timer1 = disabled
     T1CONbits.TSIDL = 0; // Timer1 Stop in Idle Mode = Continues module operation in Idle mode
