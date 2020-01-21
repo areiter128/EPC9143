@@ -4,6 +4,12 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
+      <logicalFolder name="f2" displayName="apps" projectFiles="true">
+      </logicalFolder>
+      <logicalFolder name="f3" displayName="drivers" projectFiles="true">
+        <itemPath>h/drivers/drv_BuckConverter.h</itemPath>
+        <itemPath>h/drivers/npnz16b.h</itemPath>
+      </logicalFolder>
       <logicalFolder name="f1" displayName="init" projectFiles="true">
       </logicalFolder>
       <itemPath>h/globals.h</itemPath>
@@ -18,6 +24,9 @@
                    projectFiles="true">
       <logicalFolder name="f2" displayName="config" projectFiles="true">
         <itemPath>src/config/config_bits.c</itemPath>
+      </logicalFolder>
+      <logicalFolder name="f4" displayName="drivers" projectFiles="true">
+        <itemPath>src/apps/drv_BuckConverter.c</itemPath>
       </logicalFolder>
       <logicalFolder name="f1" displayName="init" projectFiles="true">
         <itemPath>src/init/init_oscillator.c</itemPath>
