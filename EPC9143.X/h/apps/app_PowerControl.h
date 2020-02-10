@@ -20,33 +20,43 @@
  */
 
 /* 
- * File:   main.h
+ * File:   app_PowerControl.h
  * Author: M91406
- * Comments: main header file of this application
+ * Comments:
+ * This is the header file of the highest-level of the power converter 
+ * state machine
  * Revision history: 
- * v1.0 initial version
+ * 1.0  initial release
  */
 
 // This is a guard condition so that contents of this file are not included
 // more than once.  
-#ifndef APPLICATION_MAIN_HEADER_H
-#define	APPLICATION_MAIN_HEADER_H
+#ifndef APPLICATION_LAYER_POWER_CONTROL_H
+#define	APPLICATION_LAYER_POWER_CONTROL_H
 
 #include <xc.h> // include processor files - each processor file is guarded.  
-#include <stdint.h>
-#include <stdbool.h>
+#include <stdint.h> // include standard integer data types
+#include <stdbool.h> // include standard boolean data types
+#include <stddef.h> // include standard definition data types
 
+#include "drivers/drv_MPhaseBuck_control.h"
 #include "globals.h"
-#include "apps/app_PowerControl.h"
+#include "drivers/v_loop.h"
+#include "drivers/i_loop_a.h"
+#include "drivers/i_loop_b.h"
 
 #ifdef	__cplusplus
 extern "C" {
 #endif /* __cplusplus */
 
+extern volatile MPHBUCK_POWER_CONTROLLER_t mph_buck;
+
+extern volatile uint16_t PowerControl_Initialize(void);
+extern volatile uint16_t PowerControl_Execute(void);
     
 #ifdef	__cplusplus
 }
 #endif /* __cplusplus */
 
-#endif	/* APPLICATION_MAIN_HEADER_H */
+#endif	/* APPLICATION_LAYER_POWER_CONTROL_H */
 

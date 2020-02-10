@@ -8,8 +8,10 @@
 
 #include <xc.h>
 #include <stdint.h>
-#include "user.h"
+#include "globals.h"
 
+// Private Function Call Prototypes
+void EnableAndCalibrateADC(void);
 
 volatile uint16_t ConfigureADC(void) {
 
@@ -41,36 +43,35 @@ volatile uint16_t ConfigureADC(void) {
     EnableAndCalibrateADC(); // extracted from ADC data sheet
 
     //set trigger sources for vin,vout,isen[0],isen[1]
-    _TRGSRC0 = 0b00101; // PWM1
-    _TRGSRC1 = 0b00101; // PWM1
-    _TRGSRC2 = 0b00101; // PWM1
-    _TRGSRC3 = 0b01000; // PWM4
+    VOUT_FB_TRGSRC_REGISTER = VOUT_FB_TRGSRC; // PWM2 Secondary
+    VIN_FB_TRGSRC_REGISTER = VIN_FB_TRGSRC; // PWM2 Secondary
+    IOUT_A_FB_TRGSRC_REGISTER = IOUT_A_FB_TRGSRC; // PWM1 Primary
+    IOUT_B_FB_TRGSRC_REGISTER = IOUT_B_FB_TRGSRC; // PWM2 Primary
 
-//    ADTRIG1Lbits.TRGSRC4 = 0b00101; // PWM1 trigger
-//    TRGCON1bits.DTM = 0; // No dual trigger mode
-//    TRIG1 = ADCSAMPLEDELAY;
-//    STRIG1bits.STRGCMP = ADCSAMPLEDELAY; //secondary trig compare value
-//    STRIG1 = 1200; // PWM1L trigger
+    VOUT_FB_ADIE = 1;
+    VOUT_FB_ADEIE = 1;
+    VOUT_FB_ADC_IP = 5;
+    VOUT_FB_ADC_IF = 0;
+    VOUT_FB_ADC_IE = 1;
+    
+    VIN_FB_ADIE = 1;
+    VIN_FB_ADEIE = 1;
+    VIN_FB_ADC_IP = 5;
+    VIN_FB_ADC_IF = 0;
+    VIN_FB_ADC_IE = 1;
 
-    TRGCON1bits.TRGDIV = 2; // Trigger generated every 3rd trigger event, sampling freq is 166 Hz
-    TRGCON1bits.TRGSTRT = 0; // enable Trigger generated after 1 PWM cycles
-    
-//    TRIG2 = SADCSAMPLEDELAY;
-    TRGCON4bits.TRGDIV = 2; // Trigger generated every 3rd trigger event
-    TRGCON4bits.TRGSTRT = 0; // enable Trigger generated after 1 PWM cycles
-    
-    
-    ADIELbits.IE0 = 1;
-    _ADCAN0IP = 5;
-    _ADCAN0IF = 0;
-    _ADCAN0IE = 1;
-    
-    ADIELbits.IE3 = 1;
-    _ADCAN3IP = 5;
-    _ADCAN3IF = 0;
-    _ADCAN3IE = 1;    
+    IOUT_A_FB_ADIE = 1;
+    IOUT_A_FB_ADEIE = 1;
+    IOUT_A_FB_ADC_IP = 5;
+    IOUT_A_FB_ADC_IF = 0;
+    IOUT_A_FB_ADC_IE = 1;
 
-
+    IOUT_B_FB_ADIE = 1;
+    IOUT_B_FB_ADEIE = 1;
+    IOUT_B_FB_ADC_IP = 5;
+    IOUT_B_FB_ADC_IF = 0;
+    IOUT_B_FB_ADC_IE = 1;
+    
     return (1);
 }
 
@@ -131,21 +132,21 @@ void EnableAndCalibrateADC(void) {
 
 
     // Enable calibration for the dedicated core 1
-    ADCAL0Lbits.CAL1EN = 1;
+    _CAL1EN = 1;
     // Single-ended input calibration
-    ADCAL0Lbits.CAL1DIFF = 0;
+    _CAL1DIFF = 0;
     // Start calibration
-    ADCAL0Lbits.CAL1RUN = 1;
+    _CAL1RUN = 1;
     // Poll for the calibration end
-    while (ADCAL0Lbits.CAL1RDY == 0);
+    while (_CAL1RDY == 0);
     // Differential input calibration
-    ADCAL0Lbits.CAL1DIFF = 1;
+    _CAL1DIFF = 1;
     // Start calibration
-    ADCAL0Lbits.CAL1RUN = 1;
+    _CAL1RUN = 1;
     // Poll for the calibration end
-    while (ADCAL0Lbits.CAL1RDY == 0);
+    while (_CAL1RDY == 0);
     // End the core 1 calibration
-    ADCAL0Lbits.CAL1EN = 0;
+    _CAL1EN = 0;
 
     // Enable calibration for the dedicated core 2    
     _CAL2EN = 1;

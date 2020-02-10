@@ -11,6 +11,20 @@
 
 volatile uint16_t ConfigureGPIOs(void) {
     
+    // Reset all analog functions
+    ANSELA = 0x0000;
+    ANSELB = 0x0000;
+    #ifdef ANSELC
+    ANSELC = 0x0000;
+    #endif
+    #ifdef ANSELD
+    ANSELD = 0x0000;
+    #endif
+    #ifdef ANSELE
+    ANSELE = 0x0000;
+    #endif
+    
+    
     //Set I/O pins to low level as default
     LATA = 0;
     LATB = 0;
@@ -27,10 +41,15 @@ volatile uint16_t ConfigureGPIOs(void) {
     _RP47R = 0b0110011; //PWM4H
 
      //allocate UART pins
-    RPINR18bits.U1RXR = 0x0027;    //;   //RB7->UART1:U1RX
-    RPOR5bits.RP38R = 0x0001;    //;   //RB6->UART1:U1TX    
+//    RPINR18bits.U1RXR = 0x0027;    //;   //RB7->UART1:U1RX
+//    RPOR5bits.RP38R = 0x0001;    //;   //RB6->UART1:U1TX    
     __builtin_write_OSCCONL(OSCCON | (1 << 6));    
 
+    
+#ifndef __DEBUG
+    LATBbits.LATB7 = 0;     // Set PGC pin LOW
+    TRISBbits.TRISB7 = 0;   // configure PGC pin as output for debugging
+#endif
     
     return(1);
 }

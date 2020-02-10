@@ -19,6 +19,9 @@
  * MICROCHIP PROVIDES THIS SOFTWARE CONDITIONALLY UPON YOUR ACCEPTANCE OF THESE 
  * TERMS. 
  * ***************************************************************************/
+
+#include "globals.h"
+
 /* @@config_bits.c
  * ****************************************************************************
  * File:   config_bits.c

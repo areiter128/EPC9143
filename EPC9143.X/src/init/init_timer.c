@@ -28,7 +28,7 @@ volatile uint16_t SystemTimer_Initialize(void) {
     T1CONbits.TON = 0; // Timer1 = disabled
     T1CONbits.TSIDL = 0; // Timer1 Stop in Idle Mode = Continues module operation in Idle mode
     T1CONbits.TGATE = 0; // Timer1 Gated Time Accumulation Enable = Gated time accumulation is disabled
-    T1CONbits.TCKPS = 0b00; // Timer1 Input Clock Prescale Select = 1:1
+    T1CONbits.TCKPS = 0b00; // Timer1 Input Clock Pre-Scale Select = 1:1
     T1CONbits.TSYNC = 0; // Timer1 External Clock Input Synchronization Selection = Does not synchronize external clock input
     T1CONbits.TCS = 0; // Timer1 Clock Source Selection = Internal clock (FP)
     

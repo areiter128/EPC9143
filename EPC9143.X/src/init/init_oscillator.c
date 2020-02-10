@@ -35,16 +35,16 @@ volatile uint16_t Oscillator_Initialize(void) {
     // Tune FRC oscillator up to ~7.5 MHz to come closer to even oscillator frequencies
     // and achieve maximum PWM resolution and minimum ADC latencies
     CLKDIVbits.FRCDIV = 0b000; // Internal Fast RC Oscillator Postscaler = FRC divided by 1 (default)
-    OSCTUN = 28; // Tune FRC to ~7.467 MHz to match maximum CPU performance specs
+    OSCTUN = FRC_TUNING; // Tune FRC to ~7.467 MHz to match maximum CPU performance specs
     
     // Configure Oscillator to operate the device at 70 MIPS
     // Fosc= Fin*M/(N1*N2), Fcy=Fosc/2
     // Fosc= 7.37*(75)/(2*2)=140Mhz (140.0MHz) for Fosc, Fcy = 70Mhz
     // Configure PLL prescaler, PLL postscaler, PLL divisor
 
-    CLKDIVbits.PLLPRE = (PLL_N1 - 2); // N1 = 2
-    PLLFBD = (PLL_M - 2); // M = PLLFBD + 2 
-    CLKDIVbits.PLLPOST = ((PLL_N2 / 2) - 1); // N2 = 2
+    CLKDIVbits.PLLPRE = (OSC_PLL_N1 - 2); // N1 = 2
+    PLLFBD = (OSC_PLL_M - 2); // M = PLLFBD + 2 
+    CLKDIVbits.PLLPOST = ((OSC_PLL_N2 / 2) - 1); // N2 = 2
 
     // Initiate Clock Switch to FRC oscillator with PLL(NOSC = 0b001)
     __builtin_write_OSCCONH(0x01);

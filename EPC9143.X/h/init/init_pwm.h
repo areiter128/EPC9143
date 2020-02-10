@@ -20,33 +20,39 @@
  */
 
 /* 
- * File:   main.h
- * Author: M91406
- * Comments: main header file of this application
+ * File:   
+ * Author: 
+ * Comments:
  * Revision history: 
- * v1.0 initial version
  */
 
 // This is a guard condition so that contents of this file are not included
 // more than once.  
-#ifndef APPLICATION_MAIN_HEADER_H
-#define	APPLICATION_MAIN_HEADER_H
+#ifndef MICROCONTROLLER_ABSTRACTION_PWM_H
+#define	MICROCONTROLLER_ABSTRACTION_PWM_H
 
 #include <xc.h> // include processor files - each processor file is guarded.  
 #include <stdint.h>
-#include <stdbool.h>
-
 #include "globals.h"
-#include "apps/app_PowerControl.h"
+
+//typedef struct {
+//    volatile uint16_t pwm_channel;  // Specify PWM channel used
+//    volatile uint16_t pwmcon;
+//};
+
 
 #ifdef	__cplusplus
 extern "C" {
 #endif /* __cplusplus */
 
-    
+extern volatile uint16_t hspwm_OVR_Hold(void);
+extern volatile uint16_t hspwm_OVR_Release(void);
+extern volatile uint16_t hspwm_Enable(void);
+extern volatile uint16_t hspwm_Disable(void);
+
 #ifdef	__cplusplus
 }
 #endif /* __cplusplus */
 
-#endif	/* APPLICATION_MAIN_HEADER_H */
+#endif	/* MICROCONTROLLER_ABSTRACTION_PWM_H */
 
