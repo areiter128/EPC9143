@@ -34,15 +34,14 @@
         <itemPath>src/config/config_bits.c</itemPath>
       </logicalFolder>
       <logicalFolder name="f4" displayName="drivers" projectFiles="true">
-        <itemPath>src/drivers/i_loop_asm.s</itemPath>
         <itemPath>src/drivers/v_loop.c</itemPath>
         <itemPath>src/drivers/v_loop_asm.s</itemPath>
         <itemPath>src/drivers/i_loop_a.c</itemPath>
         <itemPath>src/drivers/i_loop_a_asm.s</itemPath>
         <itemPath>src/drivers/i_loop_b.c</itemPath>
         <itemPath>src/drivers/i_loop_b_asm.s</itemPath>
-        <itemPath>src/apps/drv_MPhaseBuck_control.c</itemPath>
         <itemPath>src/drivers/drv_MPhaseBuck_pconfig.c</itemPath>
+        <itemPath>src/drivers/drv_MPhaseBuck_control.c</itemPath>
       </logicalFolder>
       <logicalFolder name="f1" displayName="init" projectFiles="true">
         <itemPath>src/init/init_oscillator.c</itemPath>
@@ -57,6 +56,8 @@
                    projectFiles="false">
       <itemPath>Makefile</itemPath>
       <itemPath>config/v_loop.dcld</itemPath>
+      <itemPath>config/i_loop_a.dcld</itemPath>
+      <itemPath>config/i_loop_b.dcld</itemPath>
     </logicalFolder>
   </logicalFolder>
   <sourceRootList>
